@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Osman Balci on 2016.11.30 
+Copyright © 2016 Osman Balci. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="/template/siteTemplate.xhtml">
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="Movies I Like"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+
+            <div align="center" style="width:97%">
+                <!--
+                PrimeFaces Growl displays messages in an overlay. Place p:growl anywhere on your JSF page. 
+                The location of growl in a JSF page does not matter since the messages are displayed
+                as an overlay. The life attribute defines how long the message will be displayed in 
+                milliseconds after which it will fade away. 4000 milliseconds = 4 seconds
+                -->
+                <p:growl id="growl" life="4000" />
+
+                <h:form id="MovieListForm">
+                    <p:panel header="#{bundle.ListMovieTitle}">
+
+                        <!-- Read about p:dataTable in the PrimeFaces User Guide and learn about it:
+                        http://www.primefaces.org/docs/guide/primefaces_user_guide_6_0.pdf
+                        
+                        The table is displayed as sorted in the order of database Primary Key (id) values.
+                        -->
+                        <p:dataTable id="datalist" value="#{questionAnswersController.items}" var="item"
+                                     selectionMode="single" selection="#{questionAnswersController.selected}"
+                                     paginator="true"
+                                     rowKey="#{item.id}"
+                                     rows="5"
+                                     rowsPerPageTemplate="5,10,15,20,30,40,50"
+                                     class="dataTable"
+                                     >
+
+                            <p:ajax event="rowSelect"   update="createButton"/>
+                            <p:ajax event="rowUnselect" update="createButton"/>
+
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus" value="#{bundle.Create}" 
+                                                 styleClass="commandButton" actionListener="#{questionAnswersController.prepareCreate}" 
+                                                 update=":QuestionAnswersCreateForm" oncomplete="PF('QuestionAnswersCreateDialog').show()"/>                      
+                                
+                            </f:facet>
+
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+
+            </div>
+
+            <!-- Clicking the Create button displays the included Create.xhtml file in a dialog box on top of this page. -->
+            <ui:include src="Create.xhtml"/>
+
+        </ui:define>
+
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>
