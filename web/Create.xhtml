@@ -29,6 +29,14 @@
                                            itemValue="#{sessionIdItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
+                        <p:commandButton actionListener="#{questionAnswersController.create}" value="#{bundle.Save}" 
+                                         styleClass="commandButton" icon="ui-icon-disk" ajax="false"
+                                         update="display,:MovieListForm:datalist,:growl" 
+                                         oncomplete="handleSubmit(args,'QuestionAnswersCreateDialog');" />
+                        &nbsp;
+                        <!-- CANCEL button -->
+                        <p:commandButton value="#{bundle.Cancel}" onclick="PF('QuestionAnswersCreateDialog').hide()" 
+                                         styleClass="commandButton" icon="ui-icon-cancel"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
