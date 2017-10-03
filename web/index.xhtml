@@ -7,7 +7,8 @@ Copyright © 2017 Andy Sin. All rights reserved.
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <!-- This page is constructed based on the siteTemplate -->
     <ui:composition template="/template/siteTemplate.xhtml" >
@@ -22,14 +23,20 @@ Copyright © 2017 Andy Sin. All rights reserved.
                 <br />
                 <br />
                 <br />
-
-                <p:button styleClass="index_signup" outcome="StartSession" value="Start Session"/>
-
-                <br></br><br></br>
                 
-                <br></br>
+                <h:form prependId="false">
+                    <div align="Center">
+                    <p:commandButton styleClass="index_signup" value="Start Session" action="#{sessionsController.initSession()}" ajax="false"/>
+
+                    <br></br><br></br>
                 
-                 <p:button styleClass="index_signup" outcome="JoinSession" value="Join Session"/> 
+                    <br></br>
+                
+                    <p:button styleClass="index_signup" outcome="JoinSession" value="Join Session"/> 
+                    
+                    </div>
+                 
+                </h:form>
 
 
             </div>

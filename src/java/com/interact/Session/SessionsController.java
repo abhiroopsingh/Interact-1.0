@@ -5,6 +5,7 @@ import com.interact.Session.util.JsfUtil.PersistAction;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,9 @@ public class SessionsController implements Serializable {
     private com.interact.Session.SessionsFacade ejbFacade;
     private List<Sessions> items = null;
     private Sessions selected;
+    
+    final static char[] candidates = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".toCharArray();
+    final static int ID_SIZE = 16;
 
     public SessionsController() {
     }
@@ -36,6 +40,11 @@ public class SessionsController implements Serializable {
     public void setSelected(Sessions selected) {
         this.selected = selected;
     }
+    
+    public String initSession() {
+        prepareCreate();
+        return "StartSession?faces-redirect=true";
+    }
 
     protected void setEmbeddableKeys() {
     }
@@ -45,12 +54,6 @@ public class SessionsController implements Serializable {
 
     private SessionsFacade getFacade() {
         return ejbFacade;
-    }
-
-    public Sessions prepareCreate() {
-        selected = new Sessions();
-        initializeEmbeddableKey();
-        return selected;
     }
 
     public void create() {
@@ -159,5 +162,19 @@ public class SessionsController implements Serializable {
         }
 
     }
-
+    
+    private Sessions prepareCreate() {
+        selected = new Sessions(generateId());
+        initializeEmbeddableKey();
+        return selected;
+    }
+    
+    private static String generateId() {
+        Random random = new Random();
+        char[] id = new char[ID_SIZE];
+        for(int x = 0; x < ID_SIZE; x++) {
+            id[x] = candidates[random.nextInt(ID_SIZE)];
+        }
+        return new String(id);
+    }
 }

@@ -55,7 +55,7 @@ public class Sessions implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-
+    
     @XmlTransient
     public Collection<QuestionAnswers> getQuestionAnswersCollection() {
         return questionAnswersCollection;
