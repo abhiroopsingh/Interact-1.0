@@ -36,7 +36,7 @@ Copyright © 2016 Osman Balci. All rights reserved.
             </div>
 
             <h:form id="QuestionAnswersListForm">
-                <p:dataTable id="datalist" value="#{questionAnswersController.items}" var="item"
+                <p:dataTable id="datalist" value="#{questionAnswersController.sessionItems}" var="item"
                              selectionMode="single" selection="#{questionAnswersController.selected}" rowKey="#{item.id}">
 
                     <p:ajax event="rowSelect"   update="createButton"/>

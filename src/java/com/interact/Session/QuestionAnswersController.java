@@ -55,6 +55,7 @@ public class QuestionAnswersController implements Serializable {
     public QuestionAnswers prepareCreate() {
         selected = new QuestionAnswers();
         selected.setSessionId(sessionController.getSelected());
+        selected.setAnswerChoices("...");
         initializeEmbeddableKey();
         return selected;
     }
@@ -84,6 +85,7 @@ public class QuestionAnswersController implements Serializable {
         }
         return items;
     }
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -132,7 +134,7 @@ public class QuestionAnswersController implements Serializable {
     public void setSessionItems(List<QuestionAnswers> sessionItems) {
         this.sessionItems = sessionItems;
     }
-    
+
     @FacesConverter(forClass = QuestionAnswers.class)
     public static class QuestionAnswersControllerConverter implements Converter {
 
