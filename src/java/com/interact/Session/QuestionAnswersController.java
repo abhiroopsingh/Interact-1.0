@@ -16,6 +16,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
 @Named("questionAnswersController")
 @SessionScoped
@@ -25,6 +26,9 @@ public class QuestionAnswersController implements Serializable {
     private com.interact.Session.QuestionAnswersFacade ejbFacade;
     private List<QuestionAnswers> items = null;
     private QuestionAnswers selected;
+
+    @Inject
+    private SessionsController sessionController;
 
     public QuestionAnswersController() {
     }
@@ -49,6 +53,7 @@ public class QuestionAnswersController implements Serializable {
 
     public QuestionAnswers prepareCreate() {
         selected = new QuestionAnswers();
+        selected.setSessionId(sessionController.getSelected());
         initializeEmbeddableKey();
         return selected;
     }
@@ -118,7 +123,7 @@ public class QuestionAnswersController implements Serializable {
     public List<QuestionAnswers> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-    
+
     public List<QuestionAnswers> getItemsByKey(String key) {
         items = ejbFacade.questionQuery(key);
         return items;
