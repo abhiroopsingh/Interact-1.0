@@ -29,6 +29,10 @@ Copyright © 2016 Osman Balci. All rights reserved.
             -->
             <p:growl id="growl" life="4000" />
 
+            <div align="Center">
+                <h:outputText value="Your session key is: #{sessionsController.selected.getId()}"/>
+            </div>
+
             <h:form id="QuestionAnswersListForm">
                 <p:dataTable id="datalist" value="#{questionAnswersController.items}" var="item"
                              selectionMode="single" selection="#{questionAnswersController.selected}" rowKey="#{item.id}">

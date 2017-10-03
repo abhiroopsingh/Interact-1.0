@@ -118,6 +118,11 @@ public class QuestionAnswersController implements Serializable {
     public List<QuestionAnswers> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+    public List<QuestionAnswers> getItemsByKey(String key) {
+        items = ejbFacade.questionQuery(key);
+        return items;
+    }
 
     @FacesConverter(forClass = QuestionAnswers.class)
     public static class QuestionAnswersControllerConverter implements Converter {

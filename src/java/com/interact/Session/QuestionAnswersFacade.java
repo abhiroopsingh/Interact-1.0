@@ -4,6 +4,7 @@
  */
 package com.interact.Session;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +26,15 @@ public class QuestionAnswersFacade extends AbstractFacade<QuestionAnswers> {
 
     public QuestionAnswersFacade() {
         super(QuestionAnswers.class);
+    }
+
+    public List<QuestionAnswers> questionQuery(String searchString) {
+        // Place the % wildcard before and after the search string to search for it anywhere in the company name 
+        searchString = "%" + searchString + "%";
+        // Conduct the search in a case-insensitive manner and return the results in a list.
+        return getEntityManager().createQuery(
+                "SELECT s FROM QuestionAnswers s WHERE s.session_id = :searchString").
+                setParameter("searchString", searchString).getResultList();
     }
     
 }
