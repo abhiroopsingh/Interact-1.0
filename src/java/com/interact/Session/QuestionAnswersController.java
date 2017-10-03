@@ -126,15 +126,12 @@ public class QuestionAnswersController implements Serializable {
     }
 
     public List<QuestionAnswers> getSessionItems() {
-        return getFacade().findBySessionId("dPMNGkezZeZ0cjfC");
+        return getFacade().findBySessionId(sessionController.getJoinKey());
     }
 
     public void setSessionItems(List<QuestionAnswers> sessionItems) {
         this.sessionItems = sessionItems;
     }
-
-    
-    
     
     @FacesConverter(forClass = QuestionAnswers.class)
     public static class QuestionAnswersControllerConverter implements Converter {
