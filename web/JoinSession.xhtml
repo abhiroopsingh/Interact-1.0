@@ -24,71 +24,25 @@ Copyright © 2017 Andy Sin. All rights reserved.
         <ui:define name="editableContent">
 
             <div align="center" style="width:97%">
-                <!--
-                PrimeFaces Growl displays messages in an overlay. Place p:growl anywhere on your JSF page. 
-                The location of growl in a JSF page does not matter since the messages are displayed
-                as an overlay. The following will display the messages for 5 seconds and then fade away.
-                -->
-                <p:growl id="growl" life="5000" />
 
-                <h:form id="SessionForm">
+                <h:form>
 
-                    <!-- The search results are displayed under p:panel -->
-                    <p:panel header="Session Questions">
+                    <p:panelGrid id="topGrid" columns="3" layout="grid" styleClass="ui-panelgrid-blank">
 
-                        <p:dataTable id="datalist" value="#{questionAnswersController.sessionItems}" var="item"
-                                     selectionMode="single" selection="#{questionAnswersController.selected}"
-                                     paginator="true"
-                                     rowKey="#{item.id}"
-                                     rows="5"
-                                     rowsPerPageTemplate="5,10,15,20,30,40,50"
-                                     styleClass="dataTable"
-                                     >
 
-                            <!-- No need for the user to be concerned about the database Primary Key id,
-                            which is auto-generated on the server side. 
-                            
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListCompanyTitle_id}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.id}"/>
-                            </p:column>
-                            -->
 
-                            <!-- The "header" and "footer" facets are defined for the p:dataTable. See PrimeFaces
-                            User Guide at http://www.primefaces.org/docs/guide/primefaces_user_guide_5_3.pdf
-                            -->
+                        <p:commandButton styleClass="index_signup" value="Previous" action="#{studentViewController.previousIsClicked}" ajax="false"/>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListQuestionAnswersTitle_question}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.question}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Question Type"/>
-                                </f:facet>
-                                <h:outputText value="#{item.questionType}"/>
-                            </p:column>
+                        <p:panel style="height: auto;">
+                            <h:outputLabel style="font-size: 25px;" value="#{studentViewController.question}" />
+                            <br /> <br /><br /><br />
+                            <br /> <br /><br /><br />
+                            <p:inputTextarea style="box-shadow: none" rows="6" cols="33" />                        
+                        </p:panel>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Answer Choices"/>
-                                </f:facet>
-                                <h:outputText value="#{item.answerChoices}"/>
-                            </p:column>
+                        <p:commandButton styleClass="index_signup" value="Next" action="#{studentViewController.nextIsClicked}" ajax="false"/>
+                    </p:panelGrid>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListQuestionAnswersTitle_answer}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.answer}"/>
-                            </p:column>
-
-                        </p:dataTable>
-                    </p:panel>
                 </h:form>
 
             </div>

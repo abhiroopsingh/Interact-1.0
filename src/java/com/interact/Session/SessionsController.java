@@ -94,7 +94,7 @@ public class SessionsController implements Serializable {
         }
         return items;
     }
-    
+
     public List<Sessions> getSessionByKey() {
         items = ejbFacade.sessionQuery(joinKey);
         return items;
@@ -190,9 +190,14 @@ public class SessionsController implements Serializable {
         }
 
     }
-    
+
     public String join() {
         return "JoinSession?faces-redirect=true";
+    }
+
+    public String backIsClicked() {
+        joinKey = null;
+        return "index?faces-redirect=true";
     }
 
     private Sessions prepareCreate() {
@@ -208,9 +213,10 @@ public class SessionsController implements Serializable {
         for (int x = 0; x < ID_SIZE; x++) {
             id[x] = candidates[random.nextInt(candidates.length)];
         }
-        
+
         joinKey = new String(id);
-        
+
         return new String(id);
     }
+
 }

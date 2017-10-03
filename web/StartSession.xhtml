@@ -29,13 +29,16 @@ Copyright © 2016 Osman Balci. All rights reserved.
             -->
             <p:growl id="growl" life="4000" />
 
-            <div align="Center">
-                <index_header><h:outputText value="Your session key is: #{sessionsController.selected.getId()}"/></index_header>
-                <br />
-                <br />
-            </div>
-
             <h:form id="QuestionAnswersListForm">
+
+                <p:commandButton styleClass="index_signup" value="Back" action="#{sessionsController.backIsClicked}" ajax="false"/>
+
+                <div align="Center">
+                    <index_header><h:outputText value="Your session key is: #{sessionsController.selected.getId()}"/></index_header>
+                    <br />
+                    <br />
+                </div>
+
                 <p:dataTable id="datalist" value="#{questionAnswersController.sessionItems}" var="item"
                              selectionMode="single" selection="#{questionAnswersController.selected}" rowKey="#{item.id}">
 
