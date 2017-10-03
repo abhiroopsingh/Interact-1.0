@@ -166,6 +166,7 @@ public class SessionsController implements Serializable {
     private Sessions prepareCreate() {
         selected = new Sessions(generateId());
         initializeEmbeddableKey();
+        create();
         return selected;
     }
     
@@ -173,7 +174,7 @@ public class SessionsController implements Serializable {
         Random random = new Random();
         char[] id = new char[ID_SIZE];
         for(int x = 0; x < ID_SIZE; x++) {
-            id[x] = candidates[random.nextInt(ID_SIZE)];
+            id[x] = candidates[random.nextInt(candidates.length)];
         }
         return new String(id);
     }
