@@ -6,6 +6,7 @@ package com.interact.Session;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.jms.Session;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -28,6 +29,12 @@ public class QuestionAnswersFacade extends AbstractFacade<QuestionAnswers> {
         super(QuestionAnswers.class);
     }
 
+    public List<QuestionAnswers> findBySessionId(String sessionId) {
+  
+        return em.createNamedQuery("QuestionAnswers.findBySessionId").setParameter("session_id", sessionId)
+                .getResultList();
+    }
+
     public List<QuestionAnswers> questionQuery(String searchString) {
         // Place the % wildcard before and after the search string to search for it anywhere in the company name 
         searchString = "%" + searchString + "%";
@@ -36,5 +43,5 @@ public class QuestionAnswersFacade extends AbstractFacade<QuestionAnswers> {
                 "SELECT s FROM QuestionAnswers s WHERE s.session_id = :searchString").
                 setParameter("searchString", searchString).getResultList();
     }
-    
+
 }

@@ -30,7 +30,9 @@ Copyright © 2016 Osman Balci. All rights reserved.
             <p:growl id="growl" life="4000" />
 
             <div align="Center">
-                <h:outputText value="Your session key is: #{sessionsController.selected.getId()}"/>
+                <index_header><h:outputText value="Your session key is: #{sessionsController.selected.getId()}"/></index_header>
+                <br />
+                <br />
             </div>
 
             <h:form id="QuestionAnswersListForm">
@@ -51,13 +53,6 @@ Copyright © 2016 Osman Balci. All rights reserved.
                             <h:outputText value="Question Type"/>
                         </f:facet>
                         <h:outputText value="#{item.questionType}"/>
-                    </p:column>
-
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Answer Choices"/>
-                        </f:facet>
-                        <h:outputText value="#{item.answerChoices}"/>
                     </p:column>
 
                     <p:column>

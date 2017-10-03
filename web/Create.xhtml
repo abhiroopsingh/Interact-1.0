@@ -9,7 +9,7 @@
 
     <ui:composition>
 
-        <p:dialog id="QuestionAnswersCreateDlg" widgetVar="QuestionAnswersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Create New ">
+        <p:dialog id="QuestionAnswersCreateDlg" widgetVar="QuestionAnswersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Create New Question">
             <h:form id="QuestionAnswersCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{questionAnswersController.selected != null}">
@@ -25,23 +25,21 @@
                             <f:selectItem itemLabel="True False" itemValue="TF" />
                         </p:selectOneMenu>                        
 
-                        <p:outputLabel value="Answer Choices" for="answerChoices" />
-                        <p:inputText id="answerChoices" value="#{questionAnswersController.selected.answerChoices}" title="#{bundle.CreateQuestionAnswersTitle_answerChoices}" required="true" requiredMessage="#{bundle.CreateQuestionAnswersRequiredMessage_answerChoices}"/>
-
-
                         <p:outputLabel value="#{bundle.CreateQuestionAnswersLabel_answer}" for="answer" />
                         <p:inputText id="answer" value="#{questionAnswersController.selected.answer}" title="#{bundle.CreateQuestionAnswersTitle_answer}" required="true" requiredMessage="#{bundle.CreateQuestionAnswersRequiredMessage_answer}"/>
 
                     </p:panelGrid>
-
-                    <p:commandButton actionListener="#{questionAnswersController.create}" value="#{bundle.Save}" 
-                                     styleClass="commandButton" icon="ui-icon-disk" ajax="false"
-                                     update="display,:QuestionAnswersListForm:datalist,:growl" 
-                                     oncomplete="handleSubmit(args,'QuestionAnswersCreateDialog');" />
-                    &nbsp;
-                    <!-- CANCEL button -->
-                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('QuestionAnswersCreateDialog').hide()" 
-                                     styleClass="commandButton" icon="ui-icon-cancel"/>
+                    <div align="center">
+                        <br />
+                        <p:commandButton actionListener="#{questionAnswersController.create}" value="#{bundle.Save}" 
+                                         styleClass="commandButton" icon="ui-icon-disk" ajax="false"
+                                         update="display,:QuestionAnswersListForm:datalist,:growl" 
+                                         oncomplete="handleSubmit(args,'QuestionAnswersCreateDialog');" />
+                        &nbsp;
+                        <!-- CANCEL button -->
+                        <p:commandButton value="#{bundle.Cancel}" onclick="PF('QuestionAnswersCreateDialog').hide()" 
+                                         styleClass="commandButton" icon="ui-icon-cancel"/>
+                    </div>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

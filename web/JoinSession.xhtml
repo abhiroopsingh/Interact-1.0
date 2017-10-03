@@ -36,7 +36,7 @@ Copyright © 2017 Andy Sin. All rights reserved.
                     <!-- The search results are displayed under p:panel -->
                     <p:panel header="Session Questions">
 
-                        <p:dataTable id="datalist" value="#{questionAnswersController.items}" var="item"
+                        <p:dataTable id="datalist" value="#{questionAnswersController.sessionItems}" var="item"
                                      selectionMode="single" selection="#{questionAnswersController.selected}"
                                      paginator="true"
                                      rowKey="#{item.id}"

@@ -25,6 +25,7 @@ public class QuestionAnswersController implements Serializable {
     @EJB
     private com.interact.Session.QuestionAnswersFacade ejbFacade;
     private List<QuestionAnswers> items = null;
+    private List<QuestionAnswers> sessionItems = null;
     private QuestionAnswers selected;
 
     @Inject
@@ -124,11 +125,17 @@ public class QuestionAnswersController implements Serializable {
         return getFacade().findAll();
     }
 
-    public List<QuestionAnswers> getItemsByKey(String key) {
-        items = ejbFacade.questionQuery(key);
-        return items;
+    public List<QuestionAnswers> getSessionItems() {
+        return getFacade().findBySessionId("dPMNGkezZeZ0cjfC");
     }
 
+    public void setSessionItems(List<QuestionAnswers> sessionItems) {
+        this.sessionItems = sessionItems;
+    }
+
+    
+    
+    
     @FacesConverter(forClass = QuestionAnswers.class)
     public static class QuestionAnswersControllerConverter implements Converter {
 

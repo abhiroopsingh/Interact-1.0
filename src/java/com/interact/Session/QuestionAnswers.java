@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "QuestionAnswers.findByQuestion", query = "SELECT q FROM QuestionAnswers q WHERE q.question = :question")
     , @NamedQuery(name = "QuestionAnswers.findByQuestionType", query = "SELECT q FROM QuestionAnswers q WHERE q.questionType = :questionType")
     , @NamedQuery(name = "QuestionAnswers.findByAnswer", query = "SELECT q FROM QuestionAnswers q WHERE q.answer = :answer")
-    , @NamedQuery(name = "QuestionAnswers.findByAnswerChoices", query = "SELECT q FROM QuestionAnswers q WHERE q.answerChoices = :answerChoices")})
+    , @NamedQuery(name = "QuestionAnswers.findByAnswerChoices", query = "SELECT q FROM QuestionAnswers q WHERE q.answerChoices = :answerChoices")
+    , @NamedQuery(name = "QuestionAnswers.findBySessionId", query = "SELECT q FROM QuestionAnswers q WHERE q.sessionId.id = :session_id")})
 public class QuestionAnswers implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -153,5 +154,5 @@ public class QuestionAnswers implements Serializable {
     public String toString() {
         return "com.interact.Session.QuestionAnswers[ id=" + id + " ]";
     }
-    
+
 }
